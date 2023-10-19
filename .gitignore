@@ -1,4 +1,5 @@
 # Ignore folders to build project
 build/
 bin/
+data/
 .vscode/
