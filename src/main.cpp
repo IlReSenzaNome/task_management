@@ -1,19 +1,21 @@
 #include <iostream>
 #include <stdlib.h>
+#include <filesystem>
 #include "../include/interfaz.h"
+#include "../include/data.h"
 
 struct Data
 {
-  std::string nameTask;
+  std::string nameTask, description, state;
   int dueDate;
-}data;
+} data;
 
 int main(int argc, char const *argv[])
 {
-  std::cout << "Type a task: ";
-  std::getline(std::cin,data.nameTask);
-  taskInterfaz(data.nameTask);
+  relativepath();
+  createDirectory();
+  std::cout << "Type name file: " << std::endl;
+  std::getline(std::cin, data.nameTask);
 
-  
   return 0;
 }
