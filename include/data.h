@@ -6,6 +6,7 @@
 #include <filesystem>
 #include <fstream>
 #include "../lib/rlutil.h"
+#include <cstdlib>
 
 // The `verifySystem` function is used to determine the appropriate file path based on the operating system. It takes a `users` parameter, which is the username of the current user.
 std::string verifySystem(const std::string &users)
@@ -20,28 +21,18 @@ std::string verifySystem(const std::string &users)
 }
 
 // The `getUserInput()` function is used to retrieve the username from a configuration file called "config.txt".
-std::string getUserInput()
+std::string getUsername()
 {
-    std::ifstream configFile("config.txt");
-    std::string username;
-    if (configFile.is_open())
+    const char *username = std::getenv("USER");
+    if (username)
     {
-        std::getline(configFile, username);
-        configFile.close();
+        return username;
     }
-    else
-    {
-        std::cout << "Type your username: ";
-        std::getline(std::cin, username);
-        std::ofstream newConfigFile("config.txt");
-        newConfigFile << username;
-        newConfigFile.close();
-    }
-    return username;
+    return "unknown"; // Otra opción si no se pudo obtener el nombre de usuario
 }
 
 // global var user
-std::string user = getUserInput();
+std::string user = getUsername();
 
 // The `relativepath()` function is used to determine the file path based on the operating system. It calls the `verifySystem()` function to get the appropriate file path based on the current user's username. The file path is then returned as a `std::string`.
 std::string relativepath()

@@ -63,7 +63,7 @@ int selection()
       std::cout << "Error" << std::endl;
       while (getchar() != '\n')
         ;
-      exit(1);
+      exit(0);
       break;
     default:
 
