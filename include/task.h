@@ -97,4 +97,26 @@ void viewTask(const std::string &fileName)
         ;
 }
 
+void taskList()
+{
+    rlutil::cls();
+    std::string path = relativepath();
+    if (std::filesystem::exists(path) && std::filesystem::is_directory(path))
+    {
+        for (const auto &file : std::filesystem::directory_iterator(path))
+        {
+            if (std::filesystem::is_regular_file(file))
+            {
+                std::cout << "List Task: " << file.path().filename() << std::endl;
+            }
+        }
+    }
+    else
+    {
+        std::cout << "Directory not found" << std::endl;
+    }
+    while (getchar() != '\n')
+        ;
+}
+
 #endif // TASK_H

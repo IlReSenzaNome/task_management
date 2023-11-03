@@ -28,7 +28,7 @@ std::string getUsername()
     {
         return username;
     }
-    return "unknown"; // Otra opción si no se pudo obtener el nombre de usuario
+    return "unknown";
 }
 
 // global var user

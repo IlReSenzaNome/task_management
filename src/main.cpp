@@ -28,8 +28,8 @@ int menu()
   std::cout << "|                     Menu                          |" << std::endl;
   std::cout << "-----------------------------------------------------" << std::endl;
   std::cout << "|> 1. Create Task:                                  |" << std::endl;
-  std::cout << "|> 2. Delete Task:                                  |" << std::endl;
-  std::cout << "|> 3. Show Task:                                    |" << std::endl;
+  std::cout << "|> 2. Task list:                                    |" << std::endl;
+  std::cout << "|> 3. View Task:                                    |" << std::endl;
   std::cout << "|> 4. Exit:                                         |" << std::endl;
   std::cout << "-----------------------------------------------------" << std::endl;
   std::cout << "|> Enter your option:                               |" << std::endl;
@@ -55,20 +55,24 @@ int selection()
       createTask(data.nameTask);
       break;
     case 2:
+      rlutil::cls();
+      taskList();
+      break;
+    case 3:
       std::cout << "Name Task: " << std::endl;
       std::getline(std::cin, data.viewTask);
       viewTask(data.viewTask);
       break;
     case 4:
-      std::cout << "Error" << std::endl;
+      success();
       while (getchar() != '\n')
         ;
       exit(0);
       break;
     default:
-
+      error();
       break;
     }
-  } while (option != 4);
+  } while (true);
   return 0;
 }
